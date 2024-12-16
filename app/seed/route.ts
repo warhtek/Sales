@@ -115,12 +115,12 @@ export async function GET() {
       status: 200,
     });
   } 
-  export const dynamic = "force-static"; 
   catch (error) {
     await client.sql`ROLLBACK`;
     return new Response(JSON.stringify({ error: (error as Error).message }), {
       headers: { 'Content-Type': 'application/json' },
       status: 500,
     });
+      export const dynamic = "force-static"; 
   }
 }
