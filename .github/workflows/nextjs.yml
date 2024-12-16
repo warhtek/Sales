@@ -35,7 +35,7 @@ jobs:
       # 6. Conecta base de datos
         - name: Set up environment variables
         env:
-          POSTGRES_URL: postgres://default:6ZQLDNv3fFHW@ep-red-term-a4wde820-pooler.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require
+            POSTGRES_URL: ${{ secrets.POSTGRES_URL }}
 
       # 7. Construir el proyecto
       - name: Build project
