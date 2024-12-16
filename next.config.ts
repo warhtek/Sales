@@ -5,8 +5,9 @@
 const nextConfig = {//: NextConfig
   experimental: {
     ppr: 'incremental',
+    output: 'export'
   },
-  /*output: 'export', config options here */
+ /* config options here */
 };
 
 export default nextConfig;
