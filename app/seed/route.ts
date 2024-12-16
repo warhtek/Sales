@@ -114,7 +114,7 @@ export async function GET() {
       headers: { 'Content-Type': 'application/json' },
       status: 200,
     });
-  } catch (error) {
+  } catch  {
     await client.sql`ROLLBACK`;
     return new Response(JSON.stringify({ error: error.message }), {
       headers: { 'Content-Type': 'application/json' },
