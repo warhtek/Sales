@@ -24,28 +24,19 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm
 
-      # 4. Configurar pnpm en setup-node
-      - name: Setup pnpm
-        run: pnpm --version  # Verificar que pnpm esté disponible
-
-      # 5. Instalar dependencias
+      # 4. Instalar dependencias
       - name: Install dependencies
         run: pnpm install
 
-      # 6. Conecta base de datos
-        - name: Set up environment variables
-        env:
-            POSTGRES_URL: ${{ secrets.POSTGRES_URL }}
+      # 5. Configurar variables de entorno
+      - name: Set up environment variables
+        run: echo "POSTGRES_URL=${{ secrets.POSTGRES_URL }}" >> $GITHUB_ENV
 
-      # 7. Construir el proyecto
+      # 6. Construir el proyecto
       - name: Build project
         run: pnpm run build
 
-      # 8. Exportar el proyecto (si es necesario)
-      - name: Export project
-        run: pnpm run export
-
-      # 9. Desplegar en GitHub Pages
+      # 7. Desplegar en GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
