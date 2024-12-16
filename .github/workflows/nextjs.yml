@@ -30,7 +30,7 @@ jobs:
 
       # 5. Configurar variables de entorno
       - name: Set up environment variables
-        run: echo "POSTGRES_URL=${{ secrets.POSTGRES_URL }}" >> $GITHUB_ENV
+        run: echo "POSTGRES_URL= postgres://default:6ZQLDNv3fFHW@ep-red-term-a4wde820-pooler.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require"
 
       # 6. Construir el proyecto
       - name: Build project
