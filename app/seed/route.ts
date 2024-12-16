@@ -4,7 +4,7 @@
 
  const client = await db.connect();
 
- async function seedUsers() {
+export async function seedUsers() {
    await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
    await client.sql`
      CREATE TABLE IF NOT EXISTS users (
@@ -29,7 +29,7 @@
    return insertedUsers;
  }
 
- async function seedInvoices() {
+export async function seedInvoices() {
    await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
 
    await client.sql`
@@ -55,7 +55,7 @@
    return insertedInvoices;
  }
 
- async function seedCustomers() {
+export async function seedCustomers() {
    await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
 
    await client.sql`
@@ -80,7 +80,7 @@
    return insertedCustomers;
  }
 
- async function seedRevenue() {
+export async function seedRevenue() {
    await client.sql`
      CREATE TABLE IF NOT EXISTS revenue (
        month VARCHAR(4) NOT NULL UNIQUE,
