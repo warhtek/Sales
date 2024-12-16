@@ -43,14 +43,8 @@ export async function createInvoice(prevState: State, formData: FormData) {
 
        // If form validation fails, return errors early. Otherwise, continue.
   if (!validatedFields.success) {
-   const errors= validatedFields.error.flatten().fieldErrors;
-    
-   return {
-      errors: {
-        customerId: errors.customerId || [],
-        amount: errors.amount || [],
-        status: errors.status || [],
-      },
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
       message: 'Missing Fields. Failed to Create Invoice.',
     };
   }
@@ -104,7 +98,7 @@ export async function createInvoice(prevState: State, formData: FormData) {
           SET customer_id = ${customerId}, amount = ${amountInCents}, status = ${status}
           WHERE id = ${id}
         `;
-      } catch (error) {
+      } catch  {
         return { message: 'Database Error: Failed to Update Invoice.' };
       }
      
