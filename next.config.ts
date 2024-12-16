@@ -1,13 +1,12 @@
 
 /** @type {import('next').NextConfig} */
-//import type { NextConfig } from 'next';
 
-const nextConfig = {//: NextConfig
+const nextConfig = {
+  output: 'export', // Mover esto fuera de "experimental"
   experimental: {
-    ppr: 'incremental',
-    output: 'export'
+    ppr: 'incremental', // Si esta opción es necesaria
   },
- /* config options here */
+  /* Otras opciones de configuración aquí */
 };
 
 export default nextConfig;
