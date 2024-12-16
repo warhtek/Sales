@@ -3,43 +3,43 @@ name: Deploy Next.js to GitHub Pages
 on:
   push:
     branches:
-      - main  # Ajusta si tu rama principal tiene otro nombre
+      - main  # Cambia esto si tu rama principal tiene otro nombre
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Configura el repositorio
+      # 1. Configurar el repositorio
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2. Configura Node.js y pnpm
-      - name: Setup Node.js and pnpm
+      # 2. Configurar Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'pnpm'
+          cache: 'pnpm' # Habilitar caché para pnpm
 
+      # 3. Instalar pnpm
       - name: Install pnpm
-        run: corepack enable && corepack prepare pnpm@latest --activate
+        run: npm install -g pnpm
 
-      # 3. Instala las dependencias
+      # 4. Instalar dependencias
       - name: Install dependencies
         run: pnpm install
 
-      # 4. Construye el proyecto Next.js
+      # 5. Construir el proyecto
       - name: Build project
         run: pnpm run build
 
-      # 5. Exporta el proyecto (si es necesario)
+      # 6. Exportar el proyecto (si es necesario)
       - name: Export project
         run: pnpm run export
 
-      # 6. Sube los archivos a GitHub Pages
+      # 7. Desplegar en GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out  # Carpeta generada por 'next export'
-
+          publish_dir: ./out # Carpeta generada por 'next export'
