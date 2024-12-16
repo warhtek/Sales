@@ -32,15 +32,20 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      # 6. Construir el proyecto
+      # 6. Conecta base de datos
+        - name: Set up environment variables
+        env:
+          POSTGRES_URL: postgres://default:6ZQLDNv3fFHW@ep-red-term-a4wde820-pooler.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require
+
+      # 7. Construir el proyecto
       - name: Build project
         run: pnpm run build
 
-      # 7. Exportar el proyecto (si es necesario)
+      # 8. Exportar el proyecto (si es necesario)
       - name: Export project
         run: pnpm run export
 
-      # 8. Desplegar en GitHub Pages
+      # 9. Desplegar en GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
