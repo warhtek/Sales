@@ -24,3 +24,6 @@ export async function GET() {
    	return Response.json({ error }, { status: 500 });
    }
 }
+export const dynamic = "force-static";
+export const revalidate = 3600;
+
