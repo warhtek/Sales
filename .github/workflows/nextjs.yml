@@ -24,19 +24,32 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm
 
-      # 4. Instalar dependencias
+      # 4. Instalar dependencia next-auth@beta
+      - name: Install next-auth@beta
+        run: pnpm i next-auth@beta
+
+      # 5. Generar secreto con openssl
+      - name: Generate secret
+        run: |
+          SECRET=$(openssl rand -base64 32)
+          echo "NEXTAUTH_SECRET=$SECRET" >> $GITHUB_ENV
+        shell: bash
+
+      # 6. Instalar dependencias
       - name: Install dependencies
         run: pnpm install
 
-      # 5. Configurar variables de entorno
+      # 7. Configurar variables de entorno
       - name: Set up environment variables
-        run: echo "POSTGRES_URL= postgres://default:6ZQLDNv3fFHW@ep-red-term-a4wde820-pooler.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require"
+        run: |
+          echo "POSTGRES_URL=postgres://default:6ZQLDNv3fFHW@ep-red-term-a4wde820-pooler.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require" >> $GITHUB_ENV
+          echo "NEXTAUTH_URL=https://warhtek.github.io/Sales/" >> $GITHUB_ENV
 
-      # 6. Construir el proyecto
+      # 8. Construir el proyecto
       - name: Build project
         run: pnpm run build
 
-      # 7. Desplegar en GitHub Pages
+      # 9. Desplegar en GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
