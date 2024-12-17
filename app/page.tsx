@@ -22,7 +22,7 @@ export default function Page() {
 <p
       className={`${lusitana.className} text-xl text-gray-800 md:text-3xl md:leading-normal`}
     ></p>
-            <strong>Bievenido a  Acme.</strong> Tu solucion microempesarial{' '}
+            <strong>Bievenido a  Acme.</strong> Tu solución Microempesarial{' '}
             
          
           <Link
